@@ -1,0 +1,101 @@
+{% extends 'bills/base.html' %}
+{% block title %}Pay Bill{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: rgba(240, 240, 240, 0.9);
+        font-family: Arial, sans-serif;
+        margin: 0;
+    }
+
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: black;
+        color: white;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    .back-arrow {
+        text-decoration: none;
+        margin-right: 15px;
+    }
+
+    .card {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 350px;
+    }
+
+    .card h2 {
+        margin-bottom: 15px;
+        color: black;
+    }
+
+    .details p {
+        font-size: 16px;
+        margin: 5px 0;
+        color: black;
+    }
+
+    .btn {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: green;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 10px;
+    }
+
+    .btn:hover {
+        background-color: darkgreen;
+    }
+</style>
+
+<div class="header">
+    <a href="/user/dashboard/" class="back-arrow">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zM4.354 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 8H12a.5.5 0 0 1 0 1H5.707l2.355 2.354a.5.5 0 1 1-.708.708l-3-3z"/>
+        </svg>
+    </a>
+    <h2>Pay Bill</h2>
+</div>
+
+<div class="card">
+    <h2>Confirm Payment</h2>
+    <div class="details">
+        <p><strong>Account Number:</strong> {{ bill.account_number }}</p>
+        <p><strong>Amount Due:</strong> Rs. {{ bill.amount_due }}</p>
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn" onclick="payBill()">Pay</button>
+    </form>
+</div>
+
+<script>
+    function payBill() {
+        alert("Bill Paid Successfully!");
+    }
+</script>
+
+{% endblock %}

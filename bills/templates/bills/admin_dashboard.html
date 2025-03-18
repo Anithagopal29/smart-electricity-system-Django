@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill Management</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<style>
+        /* Fixed footer */
+        .footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: black;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        font-size: 14px;
+    }
+</style>
+<body>
+    <header class="bg-dark text-white p-3 d-flex align-items-center">
+        <a href="/" class="text-white me-3" style="text-decoration: none;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zM4.354 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 8H12a.5.5 0 0 1 0 1H5.707l2.355 2.354a.5.5 0 1 1-.708.708l-3-3z"/>
+            </svg>
+        </a>
+        <h2 class="m-0">Smart Electricity Bill Payment System</h2>
+    </header>
+    
+
+    <div class="container mt-4">
+        <h2 class="text-center">Manage Bills</h2>
+        
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addBillModal">+ Add Bill</button>
+
+        <table class="table table-bordered table-striped mt-3">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Account Number</th>
+                    <th>Customer Name</th>
+                    <th>Phone Number</th>
+                    <th>Amount Due</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="billTableBody">
+                <!-- Bills will be inserted here dynamically -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Add Bill Modal -->
+    <div class="modal fade" id="addBillModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Bill</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+
+                </div>
+                <div class="modal-body">
+                    <form id="billForm">
+                        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+
+                        <input type="text" name="account_number" id="accountNumber" class="form-control mb-2" placeholder="Account Number" required>
+                        <input type="text" name="customer_name" id="customerName" class="form-control mb-2" placeholder="Customer Name" required>
+                        <input type="tel" name="phone_number" id="phoneNumber" class="form-control mb-2" placeholder="Phone Number" required>
+                        <input type="number" name="amount_due" step="0.01" id="amountDue" class="form-control mb-2" placeholder="Amount Due" required>
+                        <select id="status" class="form-select mb-2">
+                            <option value="Pending">Pending</option>
+                            <!-- <option value="Unpaid">Unpaid</option> -->
+                            <option value="Paid">Paid</option>
+                        </select>
+                        <button type="submit" class="btn btn-success w-100">Add Bill</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+<div class="footer">
+    &copy; 2025 Smart Electricity Bill Payment System. All Rights Reserved.
+</div>
+
+    <!-- <script>
+        async function fetchBills() {
+            try {
+                const response = await axios.get("/get_bills/");
+                const bills = response.data;
+                const tableBody = document.getElementById("billTableBody");
+                tableBody.innerHTML = "";
+
+                bills.forEach((bill, index) => {
+                    tableBody.innerHTML += `
+                        <tr>
+                            <td>${index + 1}</td>
+                            <td>${bill.account_number}</td>
+                            <td>${bill.customer_name}</td>
+                            <td>${bill.phone_number}</td>
+                            <td>${bill.amount_due}</td>
+                            <td>${bill.status}</td>
+                            <td>
+                                <button class="btn btn-danger btn-sm" onclick="deleteBill(${bill.id})">Delete</button>
+                            </td>
+                        </tr>`;
+                });
+            } catch (error) {
+                console.error("Error fetching bills:", error);
+            }
+        }
+
+        document.getElementById("billForm").addEventListener("submit", async function(event) {
+            event.preventDefault();
+
+            const formData = new FormData();
+            formData.append("account_number", document.getElementById("accountNumber").value);
+            formData.append("customer_name", document.getElementById("customerName").value);
+            formData.append("phone_number", document.getElementById("phoneNumber").value);
+            formData.append("amount_due", document.getElementById("amountDue").value);
+            formData.append("status", document.getElementById("status").value);
+
+            try {
+                await axios.post("/add_bill/", formData);
+                fetchBills();
+                document.getElementById("billForm").reset();
+                alert("Bill added successfully!");
+            } catch (error) {
+                console.error("Error saving bill:", error);
+            }
+        });
+
+        async function deleteBill(id) {
+            try {
+                await axios.delete(`/delete_bill/${id}/`);
+                fetchBills();
+            } catch (error) {
+                console.error("Error deleting bill:", error);
+            }
+        }
+
+        fetchBills(); // Load bills when page loads
+    </script> -->
+
+    <script>
+        async function fetchBills() {
+            try {
+                const response = await axios.get("{% url 'get_bills' %}");  // Use Django URL resolution
+                const bills = response.data;
+                const tableBody = document.getElementById("billTableBody");
+                tableBody.innerHTML = "";
+    
+                bills.forEach((bill, index) => {
+                    tableBody.innerHTML += `
+                        <tr>
+                            <td>${index + 1}</td>
+                            <td>${bill.account_number}</td>
+                            <td>${bill.customer_name}</td>
+                            <td>${bill.phone_number}</td>
+                            <td>${bill.amount_due}</td>
+                            <td>${bill.status}</td>
+                            <td>
+                                <button class="btn btn-danger btn-sm" onclick="deleteBill(${bill.id})">Delete</button>
+                            </td>
+                        </tr>`;
+                });
+            } catch (error) {
+                console.error("Error fetching bills:", error);
+            }
+        }
+document.getElementById("billForm").addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    const formData = new FormData();
+    formData.append("account_number", document.getElementById("accountNumber").value);
+    formData.append("customer_name", document.getElementById("customerName").value);
+    formData.append("phone_number", document.getElementById("phoneNumber").value);
+    formData.append("amount_due", document.getElementById("amountDue").value);
+    formData.append("status", document.getElementById("status").value);
+
+    try {
+        await axios.post("{% url 'add_bill' %}", formData, {
+            headers: { "X-CSRFToken": getCSRFToken() }
+        });
+
+        alert("Bill added successfully!");
+        fetchBills();  // Refresh table
+        document.getElementById("billForm").reset();
+
+        // Close the modal
+        let modalElement = document.getElementById("addBillModal");
+        let modal = bootstrap.Modal.getInstance(modalElement);
+        modal.hide();  // Hide the Bootstrap modal
+
+    } catch (error) {
+        console.error("Error saving bill:", error);
+    }
+});
+
+
+// Fetch Bills and Update Table Automatically
+async function fetchBills() {
+    try {
+        const response = await axios.get("{% url 'get_bills' %}");
+        const bills = response.data;
+        const tableBody = document.getElementById("billTableBody");
+        tableBody.innerHTML = "";  // Clear existing table data
+
+        bills.forEach((bill, index) => {
+            tableBody.innerHTML += `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${bill.account_number}</td>
+                    <td>${bill.customer_name}</td>
+                    <td>${bill.phone_number}</td>
+                    <td>${bill.amount_due}</td>
+                    <td>${bill.status}</td>
+                    <td>
+                     <button class="btn btn-danger btn-sm" onclick="deleteBill(${bill.id})">Delete</button>
+                    </td>
+                </tr>`;
+
+        });
+    } catch (error) {
+        console.error("Error fetching bills:", error);
+    }
+}
+
+// Delete Bill and Refresh Table
+function deleteBill(billId) {
+    fetch(`/bills/delete/${billId}/`, {
+        method: "POST",  // Or "DELETE" if your view handles it
+        headers: {
+            "X-CSRFToken": getCSRFToken(),  // Ensure CSRF token is sent
+        },
+    })
+    .then(response => {
+        if (response.ok) {
+            alert("Bill deleted successfully!");
+            location.reload();
+        } else {
+            alert("Failed to delete bill.");
+        }
+    })
+    .catch(error => console.error("Error:", error));
+}
+
+
+
+
+// Function to get CSRF Token from cookies or hidden input
+function getCSRFToken() {
+    let csrfToken = document.querySelector('[name=csrfmiddlewaretoken]');
+    if (csrfToken) {
+        return csrfToken.value;
+    }
+
+    let metaCsrf = document.querySelector("meta[name='csrf-token']");
+    if (metaCsrf) {
+        return metaCsrf.getAttribute("content");
+    }
+
+    console.error("CSRF token not found!");
+    return "";
+}
+
+
+
+
+
+
+
+// Fetch bills on page load
+fetchBills();
+
+
+    </script>
+    
+</body>
+</html>

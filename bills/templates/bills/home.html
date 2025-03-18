@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Electricity Bill System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <style>
+        /* Default Light Mode */
+        body {
+            background-color: white;
+            color: black;
+            font-family: Arial, sans-serif;
+            transition: background-color 0.5s, color 0.5s;
+        }
+        /* Dark Mode */
+        .dark-mode {
+            background-color: #121212;
+            color: #f5f5f5;
+        }
+        
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 20px;
+            background-color:#343a40;
+            color: white;
+            align-items: center;
+            /* position: fixed; */
+        }
+        .navbar h2 {
+            margin: 0;
+        }
+       
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Toggle Switch */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        /* Section Styles */
+        .section {
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .panel-container {
+            margin-top: 20px;
+        }
+        .panel-container button {
+            margin: 10px;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .footer a {
+            color: #f5f5f5;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .features {
+            text-align: left;
+            max-width: 800px;
+            margin: auto;
+            padding-top: 20px;
+        }
+        /* about us */
+        .aboutus1{
+            margin:10px;
+            padding:10px;
+            text-align: left;
+            line-height: 1.6;
+            
+        }
+        .aboutus2{
+            margin:10px;
+            padding:10px;
+            text-align: left;
+            line-height: 1.6;
+        }
+        .about-container {
+            max-width: 800px;
+            margin: auto;
+            text-align: center;
+            padding: 30px;
+        }
+        .panel-container button {
+            margin: 10px;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+        }
+    #help-title, #help-content {
+    display: block;
+    text-align: center;
+    margin: auto;
+    padding: 10px;
+    font-size: 18px;
+    white-space: nowrap; /* Prevents text wrapping */
+}
+
+#languageToggle {
+    cursor: pointer;
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#languageToggle:hover {
+    background-color: #0056b3;
+}
+#welcome-text{
+    font-size: 35px;
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar" id="anithanav">
+        <h2>Smart Electricity Bill System</h2>
+        <div class="toggle-container">
+            <label class="toggle-switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider"></span>
+            </label>
+            <button id="languageToggle">தமிழ்</button>
+        </div>
+    </div>
+
+    <!-- Home Section -->
+    <section class="section">
+        <h1 id="welcome-text">Welcome to Smart Electricity Bill System</h1>
+        <div class="panel-container">
+            <a href="{% url 'admin_login' %}"><button>Admin Panel</button></a>
+            <a href="{% url 'user_login' %}"><button>User Panel</button></a>
+        </div>
+    </section>
+   <center>
+    <div class="container">
+      <h1 id="about-title">About Us</h1></center>
+      <div id="about-content">
+      <p  class="aboutus1">
+        Welcome to Smart Electricity Bill Payment System, your modern and efficient solution for managing electricity bills with ease. Our platform is designed to provide a seamless experience for both users and administrators, ensuring hassle-free bill tracking, secure payments, and real-time energy insights.
+</p>
+
+<div class="aboutus2">
+<p>At <b>Smart Electricity Bill Payment System ,</b>we aim to:</p>
+<p>✔️ Simplify the way users track and pay their electricity bills.</p>
+<p>✔️ Provide real-time monitoring of energy consumption.</p>
+<p>✔️ Offer smart predictions for monthly electricity bills.</p>
+<p>✔️ Enhance user convenience with multilingual support and a user-friendly interface.</p>
+<p>With features like secure online payments, high-usage alerts, and an interactive admin panel, we are dedicated to making electricity bill management smarter, easier, and more efficient for everyone.
+
+    Join us in embracing a smarter way to handle electricity bills today! 🚀⚡</p>
+
+</div>
+</div> 
+      <center>
+      <h2 id="features-title">Key Features</h2></center>
+      <ul class="features" id="features-content">
+          <p>✔️ **Easy Online Payments** – Pay your bills securely from anywhere.</p>
+          <p>✔️ **Real-Time Usage Tracking** – Monitor your electricity consumption and stay informed.</p>
+          <p>✔️ **Monthly Bill Predictions** – Get estimated bills based on past usage trends.</p>
+          <p>✔️ **High Usage Alerts** – Get notified when energy consumption exceeds your limit.</p>
+          <p>✔️ **Admin Panel** – Allows management of users, bills, and tariff updates.</p>
+          <p>✔️ **Multi-Language Support** – Available in English and Tamil for user convenience.</p>
+      </ul>
+  </div>
+
+
+  
+
+    <!-- Help & Support Section -->
+    <section class="section">
+        <h2 id="help-title">Help & Support</h2>
+        <p id="help-content">
+            If you need assistance, contact our support team at <strong>support@electricitybills.com</strong>
+        </p>
+    </section>
+    
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2025 Smart Electricity Bill System. All Rights Reserved.</p>
+        <p>
+            <a href="#">Privacy Policy</a> | 
+            <a href="#">Terms of Service</a>
+        </p>
+    </div>
+
+    <script>
+         
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById("darkModeToggle");
+        darkModeToggle.addEventListener("change", function () {
+            document.body.classList.toggle("dark-mode");
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+        // Language Toggle
+        const langBtn = document.getElementById("languageToggle");
+        const welcomeText = document.getElementById("welcome-text");
+        const aboutTitle = document.getElementById("about-title");
+        const aboutContent = document.getElementById("about-content");
+        const featuresTitle = document.getElementById("features-title");
+        const featuresContent = document.getElementById("features-content");
+        const helpTitle=document.getElementById("help-title");
+        const helpContent=document.getElementById("help-content");
+        let isEnglish = true;
+    
+        langBtn.addEventListener("click", function () {
+            if (isEnglish) {
+                welcomeText.textContent = "ச마트 மின் கட்டண கணினி அமைப்பு வரவேற்கிறது!";
+                aboutTitle.textContent = "எங்களை பற்றி";
+               
+                aboutContent.innerHTML=`
+                <p> "ஸ்மார்ட் மின்சார கட்டண முறைமை உங்களை அன்புடன் வரவேற்கிறது! உங்கள் மின்சார கட்டணங்களை எளிதாக நிர்வகிக்க உதவும் ஒரு நவீன மற்றும் திறமையான தீர்வாக இது உருவாக்கப்பட்டுள்ளது. பயனர்களுக்கும் நிர்வாகிகளுக்கும் பயனளிக்கும் வகையில், எங்கள் தளம் மின்சார கட்டண கண்காணிப்பு, பாதுகாப்பான கட்டணங்கள் மற்றும் நேர்முக மின்சார பயன்பாட்டை வழங்குகிறது."</p>
+                 <p>ஸ்மார்ட் மின்சார கட்டண முறைமை மூலம்:</p>
+                 <p>✔️ பயனர்கள் தங்கள் மின்சாரக் கட்டணங்களை எளிதாக கண்காணிக்கலாம் மற்றும் செலுத்தலாம்.</p>
+                 <p>✔️ நேர்முக மின்சார பயன்பாட்டை கண்காணிக்கலாம்.</p>
+                 <p>✔️ கடந்த பயன்பாடு அடிப்படையில் மாதாந்திர கட்டண கணிப்பீடுகளை பெறலாம்.</p>
+                 <p>✔️ பல மொழி ஆதரவு மற்றும் பயனர் நட்பு முகப்புடன் வசதியை மேம்படுத்தலாம்.</p>
+                 <p>பாதுகாப்பான ஆன்லைன் கட்டணங்கள், அதிக பயன்பாட்டு எச்சரிக்கைகள் மற்றும் ஒரு செயல்பாட்டு நிர்வாகப் பலகை போன்ற அம்சங்களுடன், மின்சார கட்டண மேலாண்மையை மிகவும் திறமையாகவும் எளிதாகவும் மாற்றுவதே எங்கள் நோக்கம்.
+
+இன்று உங்கள் மின்சாரக் கட்டணங்களை சமார்த்தமாக நிர்வகிக்க நாங்கள் இணைந்து செயல்படலாம்! 🚀⚡
+
+</p? `;
+                featuresTitle.textContent = "முக்கிய அம்சங்கள்";
+                featuresContent.innerHTML = `
+                    <p>✔️ <strong>எளிய ஆன்லைன் கட்டணங்கள்</strong> – எங்கிருந்தும் பாதுகாப்பாக கட்டணம் செலுத்துங்கள்.</p>
+                    <p>✔️ <strong>உண்மையான நேர பயன்பாடு கண்காணிப்பு</strong> – உங்கள் மின்சார உபயோகத்தை கண்காணியுங்கள்.</p>
+                    <p>✔️ <strong>மாதாந்திர கட்டண கணிப்பு</strong> – கடந்த பயன்பாடு அடிப்படையில் கணிப்பு பெறுங்கள்.</p>
+                    <p>✔️ <strong>அதிக பயன்பாட்டு எச்சரிக்கைகள்</strong> – உங்கள் மின்சார பயன்பாடு அதிகமாகும் போது எச்சரிக்கைகள் பெறுங்கள்.</p>
+                    <p>✔️ <strong>நிர்வாகக் குழு</strong> – பயனர்கள், கட்டணங்கள் மற்றும் விகிதங்களை நிர்வகிக்க உதவும்.</p>
+                    <p>✔️ <strong>பல மொழி ஆதரவு</strong> – ஆங்கிலம் மற்றும் தமிழ் மொழிகளில் கிடைக்கிறது.</p>`;
+                helpTitle.textContent = "உதவி & ஆதரவு";
+                helpContent.innerHTML = `உங்களுக்கு உதவி தேவைப்பட்டால், எங்கள் ஆதரவு குழுவை தொடர்பு கொள்ளவும்: <strong>support@electricitybills.com</strong>`;
+                langBtn.textContent = "English";
+            } else {
+                welcomeText.textContent = "Welcome to Smart Electricity Bill System";
+                aboutTitle.textContent = "About Us";
+                aboutContent.innerHTML = `<p>Welcome to Smart Electricity Bill Payment System, your modern and efficient solution for managing electricity bills with ease. Our platform is designed to provide a seamless experience for both users and administrators, ensuring hassle-free bill tracking, secure payments, and real-time energy insights.</p>
+                <p>At <b>Smart Electricity Bill Payment System ,</b>we aim to:</p>
+                <p>✔️ Simplify the way users track and pay their electricity bills.</p>
+                <p>✔️ Provide real-time monitoring of energy consumption.</p>
+                <p>✔️ Offer smart predictions for monthly electricity bills.</p>
+                <p>✔️ Enhance user convenience with multilingual support and a user-friendly interface.</p>
+                <p>With features like secure online payments, high-usage alerts, and an interactive admin panel, we are dedicated to making electricity bill management smarter, easier, and more efficient for everyone.
+
+    Join us in embracing a smarter way to handle electricity bills today! 🚀⚡</p>`
+                featuresTitle.textContent = "Key Features";
+                featuresContent.innerHTML = `
+                    <p>✔️ <strong>Easy Online Payments</strong> – Pay your bills securely from anywhere.</p>
+                    <p>✔️ <strong>Real-Time Usage Tracking</strong> – Monitor your electricity consumption and stay informed.</p>
+                    <p>✔️ <strong>Monthly Bill Predictions</strong> – Get estimated bills based on past usage trends.</p>
+                    <p>✔️ <strong>High Usage Alerts</strong> – Get notified when energy consumption exceeds your limit.</p>
+                    <p>✔️ <strong>Admin Panel</strong> – Allows management of users, bills, and tariff updates.</p>
+                    <p>✔️ <strong>Multi-Language Support</strong> – Available in English and Tamil for user convenience.</p>`;
+                helpTitle.textContent = "Help & Support";
+                helpContent.innerHTML = `If you need assistance, contact our support team at <strong>support@electricitybills.com</strong>`;
+                langBtn.textContent = "தமிழ்";
+            }
+            isEnglish = !isEnglish;
+        });
+    });
+    </script>
+<script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

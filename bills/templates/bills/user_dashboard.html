@@ -1,0 +1,118 @@
+{% extends 'bills/base.html' %}
+{% block title %}User Dashboard{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: rgba(240, 240, 240, 0.9);
+        font-family: Arial, sans-serif;
+        margin: 0;
+    }
+
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: black;
+        color: white;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    .back-arrow {
+        text-decoration: none;
+        margin-right: 15px;
+    }
+
+    .card {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 350px;
+    }
+
+    .card h2 {
+        margin-bottom: 15px;
+        color: black;
+    }
+
+    .details p {
+        font-size: 16px;
+        margin: 5px 0;
+        color: black;
+    }
+
+    .btn {
+        display: block;
+        width: 95%;
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 10px;
+        text-decoration: none;
+    }
+
+    .btn:hover {
+        background-color: #0056b3;
+    }
+
+    .footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: black;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        font-size: 14px;
+    }
+</style>
+
+<div class="header">
+    <a href="/" class="back-arrow">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zM4.354 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 8H12a.5.5 0 0 1 0 1H5.707l2.355 2.354a.5.5 0 1 1-.708.708l-3-3z"/>
+        </svg>
+    </a>
+    <h2>User Dashboard</h2>
+</div>
+
+<div class="card">
+    <h2>Bill Details</h2>
+    <div class="details">
+        <p><strong>Account Number:</strong> {{ bill.account_number }}</p>
+        <p><strong>Customer Name:</strong> {{ bill.customer_name }}</p>
+        <p><strong>Phone Number:</strong> {{ bill.phone_number }}</p>
+        <p><strong>Amount Due:</strong> Rs. {{ bill.amount_due }}</p>
+        <p><strong>Status:</strong> {{ bill.status }}</p>
+    </div>
+
+    {% if bill.status == "Pending" %}
+        <a href="/user/pay/?id={{ bill.id }}" class="btn">Pay Bill</a>
+    {% endif %}
+
+    {% if bill.status == "Paid" %}
+        <a href="/user/download/" class="btn">Download Bill PDF</a>
+    {% endif %}
+</div>
+
+<div class="footer">
+    &copy; 2025 Smart Electricity Bill Payment System. All Rights Reserved.
+</div>
+
+{% endblock %}
