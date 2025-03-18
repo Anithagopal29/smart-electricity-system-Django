@@ -54,5 +54,16 @@ In the **User Panel**, users can log in using their **account number and phone n
 
 <img width="596" alt="Image" src="https://github.com/user-attachments/assets/59f9d726-8460-4db7-9bfa-61ef1c7b13ae" />
 
+# Database Connectivity 
+We can integrate **Django** with an **SQLite3 database** to store bill-related data efficiently. The database keeps records of all bills, including their **payment status** (paid or pending). Additionally, any updates made to the table, such as bill payments, will be **dynamically reflected** in real-time, ensuring that the latest status is always displayed.
+
+# Before Pay Bill Database
+
+<img width="395" alt="Image" src="https://github.com/user-attachments/assets/542dc1f5-6dc0-41d7-9a7b-461ee619bc69" />
+
+# After Paid Bill Database
+
+<img width="395" alt="Image" src="https://github.com/user-attachments/assets/98745443-2f2c-4c0c-9bda-c3816e6652b9" />
+
 
 
