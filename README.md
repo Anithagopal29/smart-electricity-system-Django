@@ -15,12 +15,21 @@ The home page includes an Admin Panel, User Panel, a Dark Mode and Light Mode to
 
 <img width="956" alt="Image" src="https://github.com/user-attachments/assets/deb62c08-00db-4e1b-85aa-e5e8fd9bba76" />
 
+
 <img width="946" alt="Image" src="https://github.com/user-attachments/assets/bf5a0080-99b3-4446-a45c-d40fe270a57e" />
 
 # Admin panal
 In the **Admin Panel**, only administrators can log in using their **username and password**; access is restricted to others. The admin has the ability to **add and delete bills** and **monitor payment status**, checking whether a bill is **paid or pending**.
 
 <img width="944" alt="Image" src="https://github.com/user-attachments/assets/0c6e4555-343d-4e76-b69b-fb4815c8a34e" />
+
+# Admin Dashboard 
+
+<img width="958" alt="Image" src="https://github.com/user-attachments/assets/ac3d57f5-73d6-4356-97f0-44056cc514a8" />
+
+# Add bill
+
+<img width="957" alt="Image" src="https://github.com/user-attachments/assets/8d180031-ad9a-4950-bafb-79be72504723" />
 
 
 
