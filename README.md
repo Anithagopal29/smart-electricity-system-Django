@@ -13,5 +13,7 @@ The Smart Electricity Bill Payment System is a web application designed to provi
 # Home Page 
 The home page includes an Admin Panel, User Panel, a Dark Mode and Light Mode toggle, and language selection options for better accessibility.
 
+<img width="956" alt="Image" src="https://github.com/user-attachments/assets/deb62c08-00db-4e1b-85aa-e5e8fd9bba76" />
+
 
 
