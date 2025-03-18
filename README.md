@@ -16,6 +16,8 @@ The home page includes an Admin Panel, User Panel, a Dark Mode and Light Mode to
 <img width="956" alt="Image" src="https://github.com/user-attachments/assets/deb62c08-00db-4e1b-85aa-e5e8fd9bba76" />
 
 
+
+
 <img width="946" alt="Image" src="https://github.com/user-attachments/assets/bf5a0080-99b3-4446-a45c-d40fe270a57e" />
 
 # Admin panal
