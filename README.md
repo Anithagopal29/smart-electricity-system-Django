@@ -33,5 +33,26 @@ In the **Admin Panel**, only administrators can log in using their **username an
 
 <img width="957" alt="Image" src="https://github.com/user-attachments/assets/8d180031-ad9a-4950-bafb-79be72504723" />
 
+# User Login
+In the **User Panel**, users can log in using their **account number and phone number**. After logging in, they can check whether their bill is **paid or pending**. If the bill is **unpaid**, users can proceed with the payment by clicking the **Pay Now** button. If the bill is **already paid**, they can **download the bill receipt in PDF format** by clicking the **Download PDF** button.
+
+<img width="944" alt="Image" src="https://github.com/user-attachments/assets/3455640a-4b40-434f-bb4d-ee925b9eadd6" />
+
+# User Dashboard
+
+<img width="958" alt="Image" src="https://github.com/user-attachments/assets/af738707-6e0f-4860-ae57-d29ae7d9ceac" />
+
+# Pay Bill
+
+<img width="954" alt="Image" src="https://github.com/user-attachments/assets/c1eb0897-7d8d-419f-8962-7b8a5291728c" />
+
+# After Pay
+
+<img width="951" alt="Image" src="https://github.com/user-attachments/assets/2c212f8c-65e8-426c-ab10-b221176c47c8" />
+
+# Bill Receipt
+
+<img width="596" alt="Image" src="https://github.com/user-attachments/assets/59f9d726-8460-4db7-9bfa-61ef1c7b13ae" />
+
 
 
